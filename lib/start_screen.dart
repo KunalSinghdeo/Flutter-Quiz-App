@@ -5,7 +5,9 @@ import 'package:flutter/widgets.dart';
 class StartScreen extends StatelessWidget {
   //need to have a constructor function here by repeating class name, accepting named args called key
   //which will for forwarded to parent widget using super
-  const StartScreen({super.key});
+  const StartScreen(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
 
   // must add a build method for stateless class which return a Widget and should accept context args
   //implementing and overwriting method exected by stateless widget
@@ -20,7 +22,7 @@ class StartScreen extends StatelessWidget {
           width: 300,
           color: const Color.fromARGB(135, 255, 255, 255),
         ),
-        // don't use opacity widget as its performance intensive use color instead and set its opacity
+        // don't use opacity widget as its performance intensive, use color instead and set its opacity
         // Opacity(
         //   opacity: 0.8,
         //   child: Image.asset(
@@ -38,7 +40,8 @@ class StartScreen extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         OutlinedButton.icon(
-          onPressed: () {},
+          // lifting state up
+          onPressed: startQuiz,
           style: OutlinedButton.styleFrom(
             side: const BorderSide(
               color: Color.fromARGB(255, 244, 240, 249),
