@@ -14,24 +14,29 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   // widgets can also be stored in variable as they are also objects
-  Widget? activeScreen;
-  //used Widget as the return type
+  var activeScreen = 'start-screen';
 
-  @override
-//help with some extra initialization work, when state object is created for first time
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }
+//   @override
+// //help with some extra initialization work, when state object is created for first time
+//   void initState() {
+//     activeScreen = 'question-screen';
+//     super.initState();
+//   }
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuizQuestionScreen();
+      activeScreen = 'question-screen';
     });
   }
 
   @override
   Widget build(context) {
+    Widget screenWidget = StartScreen(switchScreen);
+
+    if (activeScreen != "start-screen") {
+      screenWidget = const QuestionScreen();
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -46,7 +51,7 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
+          child: screenWidget,
         ),
       ),
     );

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 class StartScreen extends StatelessWidget {
   //need to have a constructor function here by repeating class name, accepting named args called key

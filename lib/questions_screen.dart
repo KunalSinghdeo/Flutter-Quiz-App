@@ -1,16 +1,38 @@
+import 'package:adv_basics/answer_button.dart';
 import 'package:flutter/material.dart';
+import 'package:adv_basics/data/questions.dart';
 
-class QuizQuestionScreen extends StatefulWidget {
-  const QuizQuestionScreen({super.key});
+class QuestionScreen extends StatefulWidget {
+  const QuestionScreen({super.key});
   @override
-  State<QuizQuestionScreen> createState() {
-    return _QuizQuestionScreenState();
+  State<QuestionScreen> createState() {
+    return _QuestionScreenState();
   }
 }
 
-class _QuizQuestionScreenState extends State<QuizQuestionScreen> {
+class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(context) {
-    return const Text("Questions");
+    final currentQuestion = questions[0];
+    return SizedBox(
+      width: double.infinity, //be as wide as it can
+      child: Container(
+        margin: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.text,
+              style: const TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            ...currentQuestion.answers
+                .map((ans) => AnswerButton(answerText: ans, onTap: () {}))
+          ],
+        ),
+      ),
+    );
   }
 }
